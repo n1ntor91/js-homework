@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 5</title>
+</head>
+
+<style>
+  .active {
+    background-color: #FFA984;
+  }
+
+  body {
+    background-color: #FBF2E9;
+  }
+</style>
+
+<body>
+<ol>
+  <li class="select">"JavaScript for kids: A Playful Introduction to Programming" by Nick Morgan</li>
+  <li class="select">"Eloquent JavaScript: a Modern Introduction to Programming" by Marijn Haverbeke</li>
+  <li class="select">"JavaScript: The Good Parts" by Douglas Crockford</li>
+  <li class="select">"Programming JavaScript Applications: Robust Web Architecture with Node, HTML5, and Moderns JS Libraries" by
+    Eric Elliott
+  </li>
+  <li class="select">"Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript" by David Herman</li>
+  <li class="select">"JavaScript: The Definitive Guide" by David Flanagan</li>
+  <li class="select">"You Don't Know JS" by Kyle Simpson</li>
+</ol>
+</body>
+
+<script>
+  let liConteiner = document.getElementsByClassName("select");
+
+  for (let i = 0; i < liConteiner.length; i++) {
+    liConteiner[i].addEventListener("click", () => {
+      for (let i = 0; i < liConteiner.length; i++) {
+        liConteiner[i].classList.remove('active');
+      }
+      liConteiner[i].className += ' active';
+    });
+  }
+</script>
+
+</html>
