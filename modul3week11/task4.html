@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 4</title>
+  <style>
+    .over{
+        background-color: #FBF2E9;
+        display: flex;
+        padding: 10px;
+        max-width: 620px;
+    }
+
+    .container {
+        color: grey;
+        border-radius: 5px;
+        border: darkgray 2px solid;
+        display: flex;
+        max-width: 450px;
+    }
+
+    .signal {
+        border-radius: 50%;
+        padding: 10px;
+        min-width: 100px;
+        min-height: 100px;
+        margin: 15px;
+        background-color: grey;
+    }
+
+    .button {
+        min-height: 100px;
+        min-width: 100px;
+        background-color: #E1E1E1;
+        text-align: center;
+        align-content: center;
+        border-radius: 10px;
+        font-size: 24px;
+        margin-left: 15px;
+        padding: 15px;
+    }
+
+    .red.active {
+        background-color: red;
+    }
+
+    .yellow.active {
+        background-color: #FF9600;
+    }
+
+    .green.active {
+        background-color: green;
+    }
+
+    .grey,
+    .grey:hover {
+    color: #555;
+    border-bottom: 3px solid #b2b1b1;
+    background: #eee;
+.grey:hover { background: #e2e2e2; }
+}
+
+    body {
+    background-color: #FBF2E9;
+  }
+
+  </style>
+</head>
+<body>
+
+<div class="over">
+  <div class="container">
+    <div class="signal red" id="red"></div>
+    <div class="signal yellow" id="yellow"></div>
+    <div class="signal green" id="green"></div>
+  </div>
+  <div class="button grey">NEXT</div>
+</div>
+
+<script>
+
+  document.querySelector('.button').onclick = (e) => {
+      if (document.querySelector('.red').classList.contains('active')) {
+          document.querySelector('.red').classList.remove('active');
+          document.querySelector('.yellow').className += ' active';
+
+      } else if (document.querySelector('.yellow').classList.contains('active')) {
+          document.querySelector('.yellow').classList.remove('active');
+          document.querySelector('.green').className += ' active';
+
+      } else if (document.querySelector('.green').classList.contains('active')) {
+          document.querySelector('.green').classList.remove('active');
+          document.querySelector('.red').className += ' active';
+
+      } else {
+          document.querySelector('.red').className += ' active';
+      }
+  }
+</script>
+
+</body>
+
+</html>

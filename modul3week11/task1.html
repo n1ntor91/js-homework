@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+  <script>
+    function checkName(key) {
+        return (isNaN(key));
+    }
+  </script>
+</head>
+<body>
+<label for="input">Enter your name (name can't contain digits):</label><br>
+<input type="text" id="input" onkeydown="return checkName(event.key)">
+</body>
+</html>
