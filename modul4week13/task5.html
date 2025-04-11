@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+    main {
+        background-color: #f9f0e8;
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .month {
+        margin-right: 25px;
+    }
+    #generate {
+        margin-top: 20px;
+        width: 100%;
+    }
+    table, th, td {
+        border : 1px solid grey;
+        border-collapse : collapse;
+    }
+    th, td {
+        text-align : center;
+        padding : 8px;
+
+    }
+    .table {
+        margin-top: 30px;
+    }
+    p {
+        font-weight: bold;
+    }
+  </style>
+
+  <script>
+    window.onload = () => {
+
+        document.querySelector("#generate").addEventListener(
+            "click", () => {
+                let month = document.querySelector("#input-month").value;
+                let year = document.querySelector("#input-year").value;
+
+                document.querySelector(".table").remove();
+
+                let date = new Date();
+                date.setMonth(month - 1);
+                date.setFullYear(year);
+                date.setDate(1);
+
+                let days_in_month = 32 - new Date(year, month-1, 32).getDate();
+
+                let div = document.createElement("div");
+                div.setAttribute("class", "table");
+                document.querySelector("main").appendChild(div);
+                let p = document.createElement("p");
+                p.setAttribute("id", "date");
+                let table = document.createElement("table");
+                table.setAttribute("id", "calendar");
+                div.appendChild(p);
+                div.appendChild(table);
+
+                let flag = false;
+                let count = 1;
+                let continueFlag = true;
+                document.querySelector("#date").innerText = date.toLocaleString('en-us', {month : 'long'}) + ", " + date.getFullYear();
+
+                let trtd = document.createElement("tr");
+                let th1 = document.createElement("th");
+                let th2 = document.createElement("th");
+                let th3 = document.createElement("th");
+                let th4 = document.createElement("th");
+                let th5 = document.createElement("th");
+                let th6 = document.createElement("th");
+                let th7 = document.createElement("th");
+                table.appendChild(trtd);
+                th1.innerText = "MON";
+                trtd.appendChild(th1);
+                th2.innerText = "TUE";
+                trtd.appendChild(th2);
+                th3.innerText = "WED";
+                trtd.appendChild(th3);
+                th4.innerText = "THU";
+                trtd.appendChild(th4);
+                th5.innerText = "FRI";
+                trtd.appendChild(th5);
+                th6.innerText = "SUT";
+                trtd.appendChild(th6);
+                th7.innerText = "SUN";
+                trtd.appendChild(th7);
+
+                while (continueFlag) {
+                    let tr = document.createElement("tr");
+                    for (let i = 0; i < 7; i++) {
+                        let td = document.createElement("td");
+                        if (count === 1 && date.getDay() === i + 1) {
+                            flag = true;
+                        }
+                        if (count === days_in_month) {
+                            td.innerText = count++;
+                            flag = false;
+                            continueFlag = false;
+                        }
+                        if (flag) {
+                            td.innerText = count++;
+                            flag = true;
+                        }
+                        tr.appendChild(td);
+                    }
+                    table.appendChild(tr);
+                }
+                document.querySelector("#input-month").value = "";
+                document.querySelector("#input-year").value = "";
+            }
+        );
+    }
+  </script>
+
+</head>
+
+<body>
+<main>
+  <div class="input">
+    <label class="month">Month: <input type="text" size="12" id="input-month"></label>
+    <label class="year">Year: <input type="text" size="12" id="input-year"></label> <br>
+  </div>
+  <input type="button" value="Generate" id="generate">
+  <div class="table"></div>
+</main>
+</body>
+
+</html>
